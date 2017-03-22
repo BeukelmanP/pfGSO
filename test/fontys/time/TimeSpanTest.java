@@ -180,7 +180,7 @@ public class TimeSpanTest {
     /**
      * Test of intersectionWith method, of class TimeSpan.
      */
-    @Test(expected=IllegalArgumentException.class)
+    @Test
     public void testIntersectionWith() {
         System.out.println("Test intersectionWith");        
         TimeSpan tsstart = new TimeSpan(new Time(2017,3,20,12,30), new Time(2017,3,20,12,40));
@@ -199,8 +199,8 @@ public class TimeSpanTest {
         assertEquals(null, tsstart.intersectionWith(tsleftborder));
         assertEquals(null, tsstart.intersectionWith(tsrightborder));
         assertEquals(4, tsstart.intersectionWith(tsin).length());
-        assertEquals(5, tsstart.intersectionWith(tsleft));
-        assertEquals(5, tsstart.intersectionWith(tsright));
+        assertEquals(5, tsstart.intersectionWith(tsleft).length());
+        assertEquals(5, tsstart.intersectionWith(tsright).length());
     }
     
 }

@@ -125,14 +125,14 @@ public class TimeSpan implements ITimeSpan {
 
         ITime begintime, endtime;
         
-        if (bt.compareTo(timeSpan.getBeginTime()) > 0) {
+        if (bt.compareTo(timeSpan.getBeginTime()) < 0) {
             begintime = bt;
         } else {
             begintime = timeSpan.getBeginTime();
         }
 
 
-        if (et.compareTo(timeSpan.getEndTime()) < 0) {
+        if (et.compareTo(timeSpan.getEndTime()) > 0) {
 
             endtime = et;
         } else {

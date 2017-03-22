@@ -119,24 +119,24 @@ public class TimeSpan implements ITimeSpan {
     public TimeSpan intersectionWith(ITimeSpan timeSpan) {
 
 <span class="pc bpc" id="L121" title="3 of 8 branches missed.">        if ((bt.compareTo(timeSpan.getEndTime()) &lt;= 0 &amp;&amp; bt.compareTo(timeSpan.getBeginTime()) &lt;= 0 &amp;&amp; et.compareTo(timeSpan.getEndTime()) &lt;= 0 &amp;&amp; et.compareTo(timeSpan.getBeginTime()) &lt;= 0) </span>
-<span class="pc bpc" id="L122" title="3 of 8 branches missed.">           || (bt.compareTo(timeSpan.getBeginTime()) &gt;= 0 &amp;&amp; bt.compareTo(timeSpan.getEndTime()) &gt;= 0 &amp;&amp; et.compareTo(timeSpan.getBeginTime()) &gt;= 0 &amp;&amp; et.compareTo(timeSpan.getEndTime()) &gt;= 0)) {</span>
+<span class="pc bpc" id="L122" title="2 of 8 branches missed.">           || (bt.compareTo(timeSpan.getBeginTime()) &gt;= 0 &amp;&amp; bt.compareTo(timeSpan.getEndTime()) &gt;= 0 &amp;&amp; et.compareTo(timeSpan.getBeginTime()) &gt;= 0 &amp;&amp; et.compareTo(timeSpan.getEndTime()) &gt;= 0)) {</span>
 <span class="fc" id="L123">            return null;</span>
         }
 
         ITime begintime, endtime;
         
-<span class="pc bpc" id="L128" title="1 of 2 branches missed.">        if (bt.compareTo(timeSpan.getBeginTime()) &gt; 0) {</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">        if (bt.compareTo(timeSpan.getBeginTime()) &lt; 0) {</span>
 <span class="fc" id="L129">            begintime = bt;</span>
         } else {
-<span class="nc" id="L131">            begintime = timeSpan.getBeginTime();</span>
+<span class="fc" id="L131">            begintime = timeSpan.getBeginTime();</span>
         }
 
 
-<span class="pc bpc" id="L135" title="1 of 2 branches missed.">        if (et.compareTo(timeSpan.getEndTime()) &lt; 0) {</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        if (et.compareTo(timeSpan.getEndTime()) &gt; 0) {</span>
 
 <span class="fc" id="L137">            endtime = et;</span>
         } else {
-<span class="nc" id="L139">            endtime = timeSpan.getEndTime();</span>
+<span class="fc" id="L139">            endtime = timeSpan.getEndTime();</span>
         }
 
         

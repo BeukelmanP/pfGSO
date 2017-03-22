@@ -98,6 +98,15 @@ public class TimeSpan2Test {
     }
 
     /**
+     * Test of setEndTime method, of class TimeSpan.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetEndTimeExeption() {
+        System.out.println("Test method: setEndTime Exeption \n");
+        t1.setEndTime(new Time(2015, 1, 20, 12, 45));
+    }
+
+    /**
      * Test of move method, of class TimeSpan.
      */
     @Test

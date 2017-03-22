@@ -94,12 +94,13 @@ public class TimeSpan2 implements ITimeSpan {
     @Override
     public TimeSpan2 unionWith(ITimeSpan timeSpan) {
         ITime et = bt.plus((int)duration);
-        if (bt.compareTo(timeSpan.getEndTime()) < 0 || et.compareTo(timeSpan.getBeginTime()) > 0) {
+        if ((bt.compareTo(timeSpan.getEndTime()) < 0 && bt.compareTo(timeSpan.getBeginTime()) < 0 && et.compareTo(timeSpan.getEndTime()) < 0 && et.compareTo(timeSpan.getBeginTime()) < 0) 
+           || (bt.compareTo(timeSpan.getBeginTime()) > 0 && bt.compareTo(timeSpan.getEndTime()) > 0 && et.compareTo(timeSpan.getBeginTime()) > 0 && et.compareTo(timeSpan.getEndTime()) > 0)) {
             return null;
         }
         
         ITime begintime, endtime;
-        if (bt.compareTo(timeSpan.getBeginTime()) < 0) {
+        if (bt.compareTo(timeSpan.getBeginTime()) > 0) {
             begintime = bt;
         } else {
             begintime = timeSpan.getBeginTime();

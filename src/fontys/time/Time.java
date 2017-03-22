@@ -114,4 +114,18 @@ public class Time implements ITime {
         Time t = (Time) time;
         return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);
     }
+    
+        @Override
+    public boolean equals(Object obj){
+        Time t = (Time)obj;
+        if(t.getDay() == this.getDay() && t.getYear() == this.getYear() && t.getHours() == this.getHours() && t.getMinutes() == this.getMinutes()){
+            return true;
+        }
+        return false;
+    }
+    
+    @Override
+    public String toString(){
+        return this.getYear()+"-"+ this.getMonth()+"-"+this.getDay()+"-"+this.getHours()+"-"+this.getMinutes();
+    }
 }

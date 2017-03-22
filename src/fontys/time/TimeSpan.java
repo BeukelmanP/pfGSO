@@ -53,7 +53,7 @@ public class TimeSpan implements ITimeSpan {
 
     @Override
     public void setBeginTime(ITime beginTime) {
-        if (beginTime.compareTo(et) >= 0) {
+    if (beginTime.compareTo(et) <= 0) {
             throw new IllegalArgumentException("begin time "
                     + bt + " must be earlier than end time " + et);
         }
@@ -63,18 +63,17 @@ public class TimeSpan implements ITimeSpan {
 
     @Override
     public void setEndTime(ITime endTime) {
-        if (endTime.compareTo(bt) <= 0) {
+        if (endTime.compareTo(bt) >= 0) {
             throw new IllegalArgumentException("end time "
                     + et + " must be later then begin time " + bt);
         }
-
-        bt = endTime;
+        et = endTime;
     }
 
     @Override
     public void move(int minutes) {
         bt = bt.plus(minutes);
-        et = bt.plus(minutes);
+        et = et.plus(minutes);
     }
 
     @Override
@@ -88,38 +87,18 @@ public class TimeSpan implements ITimeSpan {
 
     @Override
     public boolean isPartOf(ITimeSpan timeSpan) {
-        return (getBeginTime().compareTo(timeSpan.getBeginTime()) >= 0
-                && getEndTime().compareTo(timeSpan.getEndTime()) <= 0);
+        return (timeSpan.getBeginTime().compareTo(getBeginTime()) >= 0
+                && timeSpan.getEndTime().compareTo(getEndTime()) <= 0) ;
     }
 
     @Override
-    public ITimeSpan unionWith(ITimeSpan timeSpan) {
-        if (bt.compareTo(timeSpan.getEndTime()) > 0 || et.compareTo(timeSpan.getBeginTime()) < 0) {
+    public TimeSpan unionWith(ITimeSpan timeSpan) {
+        if (bt.compareTo(timeSpan.getEndTime()) < 0 || et.compareTo(timeSpan.getBeginTime()) > 0) {
             return null;
         }
         
         ITime begintime, endtime;
         if (bt.compareTo(timeSpan.getBeginTime()) < 0) {
-            begintime = bt;
-        } else {
-            begintime = timeSpan.getBeginTime();
-        }
-
-        if (et.compareTo(timeSpan.getEndTime()) > 0) {
-            endtime = et;
-        } else {
-            endtime = timeSpan.getEndTime();
-        }
-
-        return new TimeSpan(begintime, endtime);
-
-    }
-
-    @Override
-    public ITimeSpan intersectionWith(ITimeSpan timeSpan) {
-
-        ITime begintime, endtime;
-        if (bt.compareTo(timeSpan.getBeginTime()) > 0) {
             begintime = bt;
         } else {
             begintime = timeSpan.getBeginTime();
@@ -131,10 +110,47 @@ public class TimeSpan implements ITimeSpan {
             endtime = timeSpan.getEndTime();
         }
 
-        if (begintime.compareTo(endtime) >= 0) {
-            return null;
+        return new TimeSpan(begintime, endtime);
+
+    }
+
+    @Override
+    public TimeSpan intersectionWith(ITimeSpan timeSpan) {
+
+        System.out.println("ttt" + bt.compareTo(timeSpan.getBeginTime()));
+        ITime begintime, endtime;
+        if (bt.compareTo(timeSpan.getBeginTime()) < 0) {
+            begintime = bt;
+        } else {
+            begintime = timeSpan.getBeginTime();
         }
 
+        System.out.println("ttt" + et.compareTo(timeSpan.getEndTime()));
+        if (et.compareTo(timeSpan.getEndTime()) > 0) {
+            endtime = et;
+        } else {
+            endtime = timeSpan.getEndTime();
+        }
+        
+        if (begintime.compareTo(endtime) <= 0) {
+            return null;
+        }
+        
         return new TimeSpan(begintime, endtime);
     }
+    
+    @Override
+    public boolean equals(Object obj){
+        TimeSpan ts = (TimeSpan)obj;
+        if(ts.getBeginTime().equals(this.getBeginTime()) && ts.getEndTime().equals(this.getEndTime())){
+            return true;
+        }
+        return false;
+    }
+    
+    @Override
+    public String toString(){
+        return "BeginTime:" + getBeginTime()+ "     EndTime" + getEndTime();
+    }
+
 }

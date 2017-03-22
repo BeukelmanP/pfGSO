@@ -17,13 +17,13 @@ import static org.junit.Assert.*;
  *
  * @author Fred
  */
-public class TimeSpanTest2 {
+public class TimeSpan2Test {
 
     TimeSpan2 t1;
     TimeSpan2 t2;
     TimeSpan2 t3;
 
-    public TimeSpanTest2() {
+    public TimeSpan2Test() {
     }
 
     @BeforeClass
@@ -184,4 +184,12 @@ public class TimeSpanTest2 {
 
     }
 
+    @Test
+    public void testToString() {
+        String expected = "BeginTime:" + new Time(2017, 3, 20, 12, 0) + "     EndTime" + new Time(2017, 3, 20, 12, 30);
+        String actual = t1.toString();
+        System.out.println("Expected: " + expected + " Actual: " + actual + " \n ");
+
+        assertEquals(expected, actual);
+    }
 }

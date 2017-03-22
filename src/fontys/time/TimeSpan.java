@@ -122,7 +122,7 @@ public class TimeSpan implements ITimeSpan {
            || (bt.compareTo(timeSpan.getBeginTime()) >= 0 && bt.compareTo(timeSpan.getEndTime()) >= 0 && et.compareTo(timeSpan.getBeginTime()) >= 0 && et.compareTo(timeSpan.getEndTime()) >= 0)) {
             return null;
         }
-        
+
         ITime begintime, endtime;
         
         if (bt.compareTo(timeSpan.getBeginTime()) > 0) {
@@ -131,8 +131,9 @@ public class TimeSpan implements ITimeSpan {
             begintime = timeSpan.getBeginTime();
         }
 
-        
+
         if (et.compareTo(timeSpan.getEndTime()) < 0) {
+
             endtime = et;
         } else {
             endtime = timeSpan.getEndTime();

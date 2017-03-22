@@ -154,17 +154,26 @@ public class TimeSpanTest {
     @Test
     public void testUnionWith() {
         System.out.println("Test unionWith");
-        t3.move(20);
+        TimeSpan tsstart = new TimeSpan(new Time(2017,3,20,12,30), new Time(2017,3,20,12,40));
         
-        TimeSpan tsuw = t1.unionWith(new TimeSpan(new Time(2017,3,20,12,5), new Time(2017,3,20,12,10)));
-        assertEquals(25,tsuw.length());
+        TimeSpan tsafter = new TimeSpan(new Time(2017,3,20,12,41), new Time(2017,3,20,12,50));
+        TimeSpan tsbefore = new TimeSpan(new Time(2017,3,20,12,20), new Time(2017,3,20,12,29));
+        TimeSpan tsin = new TimeSpan(new Time(2017,3,20,12,31), new Time(2017,3,20,12,35));
+        TimeSpan tsleft = new TimeSpan(new Time(2017,3,20,12,25), new Time(2017,3,20,12,35));
+        TimeSpan tsright = new TimeSpan(new Time(2017,3,20,12,35), new Time(2017,3,20,12,50));
+        TimeSpan tsleftborder = new TimeSpan(new Time(2017,3,20,12,25), new Time(2017,3,20,12,30));
+        TimeSpan tsrightborder = new TimeSpan(new Time(2017,3,20,12,40), new Time(2017,3,20,12,50));
         
-        tsuw = t1.unionWith(new TimeSpan(new Time(2017,3,20,11,55), new Time(2017,3,20,12,40)));
-        assertEquals(40,tsuw.length());
+        assertEquals(null, tsstart.unionWith(tsafter));
+        assertEquals(null, tsstart.unionWith(tsbefore));
+        assertEquals(10, tsstart.unionWith(tsin).length());
+        assertEquals(15, tsstart.unionWith(tsleft).length());
+        assertEquals(20, tsstart.unionWith(tsright).length());
+        assertEquals(15, tsstart.unionWith(tsleftborder).length());
+        assertEquals(20, tsstart.unionWith(tsrightborder).length());
         
-        tsuw = t1.unionWith(new TimeSpan(new Time(2017,3,20,12,0), new Time(2017,3,20,12,40)));
-        assertEquals(40,tsuw.length());
-        System.out.println(tsuw);
+        System.out.println(t1);
+
         
     }
 
@@ -174,10 +183,24 @@ public class TimeSpanTest {
     @Test(expected=IllegalArgumentException.class)
     public void testIntersectionWith() {
         System.out.println("Test intersectionWith");        
-        assertEquals(15,t1.intersectionWith(t3).length());
-        assertEquals(30, t1.intersectionWith((ITimeSpan)new TimeSpan(new Time(2017,3,20,11,0), new Time(2017,3,20,12,40))).length());
-        assertEquals(0,new TimeSpan(new Time(2017,3,20,11,0), new Time(2017,3,20,10,0)).intersectionWith((ITimeSpan)new TimeSpan(new Time(2017,3,20,11,0), new Time(2017,3,20,11,0))).length() );
+        TimeSpan tsstart = new TimeSpan(new Time(2017,3,20,12,30), new Time(2017,3,20,12,40));
         
+        TimeSpan tsafter = new TimeSpan(new Time(2017,3,20,12,41), new Time(2017,3,20,12,50));
+        TimeSpan tsbefore = new TimeSpan(new Time(2017,3,20,12,20), new Time(2017,3,20,12,29));
+        TimeSpan tsin = new TimeSpan(new Time(2017,3,20,12,31), new Time(2017,3,20,12,35));
+        TimeSpan tsleft = new TimeSpan(new Time(2017,3,20,12,25), new Time(2017,3,20,12,35));
+        TimeSpan tsright = new TimeSpan(new Time(2017,3,20,12,35), new Time(2017,3,20,12,50));
+        TimeSpan tsleftborder = new TimeSpan(new Time(2017,3,20,12,25), new Time(2017,3,20,12,30));
+        TimeSpan tsrightborder = new TimeSpan(new Time(2017,3,20,12,40), new Time(2017,3,20,12,50));
+        
+        
+        assertEquals(null, tsstart.intersectionWith(tsafter));
+        assertEquals(null, tsstart.intersectionWith(tsbefore));
+        assertEquals(null, tsstart.intersectionWith(tsleftborder));
+        assertEquals(null, tsstart.intersectionWith(tsrightborder));
+        assertEquals(4, tsstart.intersectionWith(tsin).length());
+        assertEquals(5, tsstart.intersectionWith(tsleft));
+        assertEquals(5, tsstart.intersectionWith(tsright));
     }
     
 }

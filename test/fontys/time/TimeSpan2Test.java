@@ -17,13 +17,13 @@ import static org.junit.Assert.*;
  *
  * @author Fred
  */
-public class TimeSpanTest2 {
+public class TimeSpan2Test {
 
     TimeSpan2 t1;
     TimeSpan2 t2;
     TimeSpan2 t3;
 
-    public TimeSpanTest2() {
+    public TimeSpan2Test() {
     }
 
     @BeforeClass

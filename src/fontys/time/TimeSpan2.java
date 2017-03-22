@@ -19,7 +19,7 @@ public class TimeSpan2 implements ITimeSpan {
      * always positive
      * 
      */
-    private ITime bt, et;
+    private ITime bt;
     private long duration;
     
     /**
@@ -32,9 +32,8 @@ public class TimeSpan2 implements ITimeSpan {
             throw new IllegalArgumentException("begin time "
                     + bt + " must be earlier than end time " + et);
         }
-
         this.bt = bt;
-        this.et = et;
+        this.duration = et.difference(bt);
     }
 
     @Override
@@ -44,21 +43,21 @@ public class TimeSpan2 implements ITimeSpan {
 
     @Override
     public ITime getEndTime() {
-        return et;
+        return bt.plus((int)duration);
     }
 
     @Override
     public int length() {
-        return et.difference(bt);
+        return (int)duration;
     }
 
     @Override
     public void setBeginTime(ITime beginTime) {
-    if (beginTime.compareTo(et) <= 0) {
+    /*if (beginTime.compareTo(et) <= 0) {
             throw new IllegalArgumentException("begin time "
                     + bt + " must be earlier than end time " + et);
         }
-
+*/
         bt = beginTime;
     }
 
@@ -66,15 +65,16 @@ public class TimeSpan2 implements ITimeSpan {
     public void setEndTime(ITime endTime) {
         if (endTime.compareTo(bt) >= 0) {
             throw new IllegalArgumentException("end time "
-                    + et + " must be later then begin time " + bt);
+                    + endTime + " must be later then begin time " + bt);
         }
-        et = endTime;
+        duration = endTime.difference(bt);
+        //et = endTime;
     }
 
     @Override
     public void move(int minutes) {
         bt = bt.plus(minutes);
-        et = et.plus(minutes);
+        
     }
 
     @Override
@@ -82,8 +82,7 @@ public class TimeSpan2 implements ITimeSpan {
         if (minutes <= 0) {
             throw new IllegalArgumentException("length of period must be positive");
         }
-        
-        et = et.plus(minutes);
+        duration = duration + minutes;
     }
 
     @Override
@@ -94,6 +93,7 @@ public class TimeSpan2 implements ITimeSpan {
 
     @Override
     public TimeSpan2 unionWith(ITimeSpan timeSpan) {
+        ITime et = bt.plus((int)duration);
         if (bt.compareTo(timeSpan.getEndTime()) < 0 || et.compareTo(timeSpan.getBeginTime()) > 0) {
             return null;
         }
@@ -118,6 +118,7 @@ public class TimeSpan2 implements ITimeSpan {
     @Override
     public TimeSpan2 intersectionWith(ITimeSpan timeSpan) {
 
+        ITime et = bt.plus((int)duration);
         System.out.println("ttt" + bt.compareTo(timeSpan.getBeginTime()));
         ITime begintime, endtime;
         if (bt.compareTo(timeSpan.getBeginTime()) < 0) {

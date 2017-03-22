@@ -93,12 +93,13 @@ public class TimeSpan implements ITimeSpan {
 
     @Override
     public TimeSpan unionWith(ITimeSpan timeSpan) {
-        if (bt.compareTo(timeSpan.getEndTime()) < 0 || et.compareTo(timeSpan.getBeginTime()) > 0) {
+        if ((bt.compareTo(timeSpan.getEndTime()) < 0 && bt.compareTo(timeSpan.getBeginTime()) < 0 && et.compareTo(timeSpan.getEndTime()) < 0 && et.compareTo(timeSpan.getBeginTime()) < 0) 
+           || (bt.compareTo(timeSpan.getBeginTime()) > 0 && bt.compareTo(timeSpan.getEndTime()) > 0 && et.compareTo(timeSpan.getBeginTime()) > 0 && et.compareTo(timeSpan.getEndTime()) > 0)) {
             return null;
         }
         
         ITime begintime, endtime;
-        if (bt.compareTo(timeSpan.getBeginTime()) < 0) {
+        if (bt.compareTo(timeSpan.getBeginTime()) > 0) {
             begintime = bt;
         } else {
             begintime = timeSpan.getBeginTime();
@@ -117,24 +118,26 @@ public class TimeSpan implements ITimeSpan {
     @Override
     public TimeSpan intersectionWith(ITimeSpan timeSpan) {
 
-        System.out.println("ttt" + bt.compareTo(timeSpan.getBeginTime()));
+        if ((bt.compareTo(timeSpan.getEndTime()) <= 0 && bt.compareTo(timeSpan.getBeginTime()) <= 0 && et.compareTo(timeSpan.getEndTime()) <= 0 && et.compareTo(timeSpan.getBeginTime()) <= 0) 
+           || (bt.compareTo(timeSpan.getBeginTime()) >= 0 && bt.compareTo(timeSpan.getEndTime()) >= 0 && et.compareTo(timeSpan.getBeginTime()) >= 0 && et.compareTo(timeSpan.getEndTime()) >= 0)) {
+            return null;
+        }
+        
         ITime begintime, endtime;
-        if (bt.compareTo(timeSpan.getBeginTime()) < 0) {
+        
+        if (bt.compareTo(timeSpan.getBeginTime()) > 0) {
             begintime = bt;
         } else {
             begintime = timeSpan.getBeginTime();
         }
 
-        System.out.println("ttt" + et.compareTo(timeSpan.getEndTime()));
-        if (et.compareTo(timeSpan.getEndTime()) > 0) {
+        
+        if (et.compareTo(timeSpan.getEndTime()) < 0) {
             endtime = et;
         } else {
             endtime = timeSpan.getEndTime();
         }
-        
-        if (begintime.compareTo(endtime) <= 0) {
-            return null;
-        }
+
         
         return new TimeSpan(begintime, endtime);
     }

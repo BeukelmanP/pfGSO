@@ -100,7 +100,7 @@ public class TimeTest {
     public void testConstructTimeHourExeption2()
     {
         System.out.println("Test method: getDayInWeekConstructor Exeption Hour \n");
-     Time t4 = new Time(2017,3,20,0,31);
+     Time t4 = new Time(2017,3,20,-1,31);
     }
     
     @Test
@@ -108,7 +108,7 @@ public class TimeTest {
     public void testConstructTimeMinuteExeption2()
     {
      System.out.println("Test method: getDayInWeekConstructor Exeption Minute \n");
-     Time t4 = new Time(2017,3,20,20,0);
+     Time t4 = new Time(2017,3,20,20,-1);
     }
     /**
      * Test of getDayInWeek method, of class Time.

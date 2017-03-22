@@ -34,10 +34,10 @@ public class Time implements ITime {
 <span class="fc bfc" id="L34" title="All 4 branches covered.">        if (d &lt; 1 || d &gt; 31) {</span>
 <span class="fc" id="L35">            throw new IllegalArgumentException(&quot;day must be within 1..31&quot;);</span>
         }
-<span class="pc bpc" id="L37" title="1 of 4 branches missed.">        if (h &lt; 0 || h &gt; 23) {</span>
+<span class="fc bfc" id="L37" title="All 4 branches covered.">        if (h &lt; 0 || h &gt; 23) {</span>
 <span class="fc" id="L38">            throw new IllegalArgumentException(&quot;hours must be within 0..23&quot;);</span>
         }
-<span class="pc bpc" id="L40" title="1 of 4 branches missed.">        if (min &lt; 0 || min &gt; 59) {</span>
+<span class="fc bfc" id="L40" title="All 4 branches covered.">        if (min &lt; 0 || min &gt; 59) {</span>
 <span class="fc" id="L41">            throw new IllegalArgumentException(&quot;minutes must be within 0..59&quot;);</span>
         }
         

@@ -117,7 +117,6 @@ public class TimeSpan implements ITimeSpan {
     @Override
     public TimeSpan intersectionWith(ITimeSpan timeSpan) {
 
-        System.out.println("ttt" + bt.compareTo(timeSpan.getBeginTime()));
         ITime begintime, endtime;
         if (bt.compareTo(timeSpan.getBeginTime()) < 0) {
             begintime = bt;
@@ -125,7 +124,6 @@ public class TimeSpan implements ITimeSpan {
             begintime = timeSpan.getBeginTime();
         }
 
-        System.out.println("ttt" + et.compareTo(timeSpan.getEndTime()));
         if (et.compareTo(timeSpan.getEndTime()) > 0) {
             endtime = et;
         } else {

@@ -119,15 +119,12 @@ public class TimeSpan2 implements ITimeSpan {
     public TimeSpan2 intersectionWith(ITimeSpan timeSpan) {
 
         ITime et = bt.plus((int)duration);
-        System.out.println("ttt" + bt.compareTo(timeSpan.getBeginTime()));
         ITime begintime, endtime;
         if (bt.compareTo(timeSpan.getBeginTime()) < 0) {
             begintime = bt;
         } else {
             begintime = timeSpan.getBeginTime();
         }
-
-        System.out.println("ttt" + et.compareTo(timeSpan.getEndTime()));
         if (et.compareTo(timeSpan.getEndTime()) > 0) {
             endtime = et;
         } else {

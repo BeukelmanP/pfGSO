@@ -177,7 +177,7 @@ public class TimeSpanTest2 {
         System.out.println("Test method: intersectionWith");
         System.out.println("Expected: " + 15 + " Actual: " + t1.intersectionWith(t3).length() + " ");
         assertEquals(15, t1.intersectionWith(t3).length());
-        System.out.println("Expected: " + 30 + " Actual: " + t1.intersectionWith((ITimeSpan) new TimeSpan2(new Time(2017, 3, 20, 11, 0), new Time(2017, 3, 20, 12, 40))).length() + "  ");
+        System.out.println("Expected: " + 30 + " Actual: " + t1.intersectionWith((ITimeSpan) new TimeSpan2(new Time(2017, 3, 20, 11, 0), new Time(2017, 3, 20, 12, 40))).length() + "  \n");
         assertEquals(30, t1.intersectionWith((ITimeSpan) new TimeSpan2(new Time(2017, 3, 20, 11, 0), new Time(2017, 3, 20, 12, 40))).length());
         System.out.println("Expected: " + 0 + " Actual: " + new TimeSpan2(new Time(2017, 3, 20, 11, 0), new Time(2017, 3, 20, 10, 0)).intersectionWith((ITimeSpan) new TimeSpan2(new Time(2017, 3, 20, 11, 0), new Time(2017, 3, 20, 11, 0))).length() + " \n ");
         assertEquals(0, new TimeSpan2(new Time(2017, 3, 20, 11, 0), new Time(2017, 3, 20, 10, 0)).intersectionWith((ITimeSpan) new TimeSpan2(new Time(2017, 3, 20, 11, 0), new Time(2017, 3, 20, 11, 0))).length());

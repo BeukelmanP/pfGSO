@@ -184,4 +184,12 @@ public class TimeSpan2Test {
 
     }
 
+    @Test
+    public void testToString() {
+        String expected = "BeginTime:" + new Time(2017, 3, 20, 12, 0) + "     EndTime" + new Time(2017, 3, 20, 12, 30);
+        String actual = t1.toString();
+        System.out.println("Expected: " + expected + " Actual: " + actual + " \n ");
+
+        assertEquals(expected, actual);
+    }
 }

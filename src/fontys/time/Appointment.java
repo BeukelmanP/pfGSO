@@ -60,4 +60,16 @@ public class Appointment {
      * if the contact cannot be found in the list of invitees do nothing.
      */
     
+    @Override
+    public boolean equals(Object obj){
+        Appointment apt1 = (Appointment)obj;
+        
+        if(apt1.timeSpan == this.timeSpan)
+        {
+            return true;
+        }
+        
+        return false;
+    }
+    
 }

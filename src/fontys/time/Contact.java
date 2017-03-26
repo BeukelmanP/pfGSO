@@ -5,24 +5,51 @@
  */
 package fontys.time;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author piete
  */
 public class Contact {
-    /**
-     * Constructor
-     *  
-     * Constructor1 :
-     * Param name of type String, name cannot be null and may not be empty
-     */
+    
+    public String naam;
+    public List<Appointment> appointments;
     
     /**
-     * Get/Set
-     * 
-     * getName returns the name of type String
-     * appointments returns agenda of the contact
-     */
+    * Constructor
+    *  
+    * Constructor1 :
+    * Param name of type String, name cannot be null and may not be empty
+    */
+    
+    public Contact(String _naam) {
+        
+        if(_naam != null || _naam != ""){
+            this.naam = naam;
+            appointments = new ArrayList<Appointment>();
+        }
+        else{
+            throw new IllegalArgumentException();
+        }
+        
+    }   
+
+    /**
+    * Get/Set
+    * 
+    * getName returns the name of type String
+    * appointments returns agenda of the contact
+    */
+    
+    public String getNaam() {
+        return naam;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
     
     /**
      * Method
@@ -34,12 +61,36 @@ public class Contact {
      * return false if no appointment was added else return true
      */
     
+    public boolean addAppointment(Appointment apt){
+        boolean found = false;
+        if(apt != null){
+           
+            for(Appointment apt2 : appointments){
+                if(apt2.equals(apt)){
+                    found = true;
+                }
+            }
+            
+            if(!found){
+                appointments.add(apt);
+            }
+            
+        }
+        return false;
+    }
+    
      /**
      * Method
      * 
      * removeAppointment
      * Param a of type Appointment, a cannot be null. 
      * 
-     * reoves the instance of appointment from agenda
+     * removes the instance of appointment from agenda
      */
+    
+    public void removeAppointment(Appointment apt){
+        if(apt != null){
+            appointments.remove(apt);
+        }
+    }
 }

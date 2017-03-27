@@ -21,13 +21,13 @@ public class Contact {
     * Constructor
     *  
     * Constructor1 :
-    * Param name of type String, name cannot be null and may not be empty
+    * @Param name of type String, name cannot be null and may not be empty
     */
     
     public Contact(String _naam) {
         
         if(_naam != null || _naam != ""){
-            this.naam = naam;
+            this.naam = _naam;
             appointments = new ArrayList<Appointment>();
         }
         else{
@@ -55,7 +55,7 @@ public class Contact {
      * Method
      * 
      * addAppointment
-     * Param a of type Appointment, a cannot be null and appointment may not already be in the Agenda.
+     * Param a of type Appointment, a cannot be null and appointment may not already be in the Agenda(name and timespan), you can have two overlapping appointments.
      * 
      * adds a new appointment to the agenda
      * return false if no appointment was added else return true

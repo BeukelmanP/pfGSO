@@ -5,13 +5,13 @@
  */
 package fontys.time;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import com.google.common.collect.Lists;
 
 /**
  *
@@ -26,7 +26,7 @@ public class AppointmentTest {
     
     @BeforeClass
     public static void setUpClass() {
-        apt1 = new Appointment("Doctors afspraak", new TimeSpan(new Time(2017,2,1,12,30), new Time(2017,2,1,12,40)));
+        
     }
     
     @AfterClass
@@ -35,6 +35,7 @@ public class AppointmentTest {
     
     @Before
     public void setUp() {
+        apt1 = new Appointment("Doctors afspraak", new TimeSpan(new Time(2017,2,1,12,30), new Time(2017,2,1,12,40)));
     }
     
     @After
@@ -49,11 +50,10 @@ public class AppointmentTest {
     
     @Test
     public void addContactTest(){
-        apt1.addContact(new Contact("Doctor"));
         assertEquals(true,apt1.addContact(new Contact("Doctor")));
         
         apt1.addContact(new Contact("Ham Speklap"));
-        assertEquals(Lists.newArrayList(apt1.invitees().size()),2);
+        assertEquals(apt1.getInvitees().size(),2);
         
         assertEquals(false,apt1.addContact(new Contact("Ham Speklap")));
     }
@@ -61,12 +61,12 @@ public class AppointmentTest {
     @Test
     public void removeContact(){
         apt1.addContact(new Contact("Doctor"));
-        assertEquals(Lists.newArrayList(apt1.invitees().size()),1);
+        assertEquals(apt1.getInvitees().size(),1);
         
         apt1.removeContact(new Contact("Doctor"));
-        assertEquals(Lists.newArrayList(apt1.invitees().size()),0);
+        assertEquals(apt1.getInvitees().size(),0);
         
         apt1.removeContact(new Contact("Doctor"));
-        assertEquals(Lists.newArrayList(apt1.invitees().size()),0);
+        assertEquals(apt1.getInvitees().size(),0);
     }
 }

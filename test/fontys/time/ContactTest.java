@@ -50,21 +50,46 @@ public class ContactTest {
         new Contact(null);
     }
 
+    @Test
     public void testgetName() {
-        String name = s.getName();
+        String name = c.getNaam();
         assertEquals("Henk", name);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testaddAppointmentfalse() {
-        a.addAppointment(null);
+        c.addAppointment(null);
     }
 
+    @Test
     public void testaddAppointment() {
-        
+        c.addAppointment(new Appointment("Afspraak", new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40))));
+        assertEquals(c.getAppointments().size(), 1);
+
+        c.addAppointment(new Appointment("Afspraak", new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40))));
+        assertEquals(c.getAppointments().size(), 1);
+
+        c.addAppointment(new Appointment("testAfspraak", new TimeSpan(new Time(2017, 2, 1, 13, 30), new Time(2017, 2, 1, 13, 40))));
+        assertEquals(c.getAppointments().size(), 2);
+
+        c.addAppointment(new Appointment("testAfspraak", new TimeSpan(new Time(2017, 2, 1, 13, 38), new Time(2017, 2, 1, 13, 49))));
+        assertEquals(c.getAppointments().size(), 3);
+
     }
 
     public void testremoveAppointment() {
+
+        c.addAppointment(new Appointment("Afspraak", new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40))));
+        assertEquals(c.getAppointments().size(), 1);
+
+        c.addAppointment(new Appointment("testAfspraak", new TimeSpan(new Time(2017, 2, 1, 13, 30), new Time(2017, 2, 1, 13, 40))));
+        assertEquals(c.getAppointments().size(), 2);
+
+        c.removeAppointment(new Appointment("Afspraak", new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40))));
+        assertEquals(c.getAppointments().size(), 1);
+
+        c.removeAppointment(new Appointment("Afspraak", new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40))));
+        assertEquals(c.getAppointments().size(), 1);
     }
 
     public void testappointments() {

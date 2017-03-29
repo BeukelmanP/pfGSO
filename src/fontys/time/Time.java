@@ -107,12 +107,27 @@ public class Time implements ITime {
     @Override
     public int compareTo(ITime t) {
         Time time = (Time) t;
-        return gc.compareTo(time.gc);
+        return time.gc.compareTo(gc);
     }
 
     @Override
     public int difference(ITime time) {
         Time t = (Time) time;
         return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Time t = (Time) obj;
+        if (t.getDay() == this.getDay() && t.getYear() == this.getYear() && t.getHours() == this.getHours() && t.getMinutes() == this.getMinutes()) {
+            return true;
+        }
+        return false;
+    }
+    
+     @Override
+    public String toString()
+    {
+    return ("Date: "+this.getYear()+"/"+this.getMonth()+"/"+this.getDay()+" Day: "+this.getDayInWeek()+" Time: "+this.getHours()+":"+this.getMinutes());
     }
 }

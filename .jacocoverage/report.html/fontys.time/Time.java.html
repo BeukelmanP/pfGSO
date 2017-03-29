@@ -9,9 +9,9 @@ import java.util.GregorianCalendar;
 /**
  *
  * @author Frank Peeters, Nico Kuijpers
- * 
+ *
  * LET OP: De klasse Time bevat enkele fouten.
- * 
+ *
  */
 public class Time implements ITime {
 
@@ -19,114 +19,116 @@ public class Time implements ITime {
 
     /**
      * creation of a time-object with year y, month m, day d, hours h and
-     * minutes m; if the combination of y-m-d refers to a non-existing date 
-     * the value of this Time-object will be not guaranteed 
-     * @param y 
-     * @param m 1≤m≤12
-     * @param d 1≤d≤31
-     * @param h 0≤h≤23
-     * @param min 0≤m≤59
+     * minutes m; if the combination of y-m-d refers to a non-existing date the
+     * value of this Time-object will be not guaranteed
+     *
+     * @param y
+     * @param m 1â‰¤mâ‰¤12
+     * @param d 1â‰¤dâ‰¤31
+     * @param h 0â‰¤hâ‰¤23
+     * @param min 0â‰¤mâ‰¤59
      */
-<span class="fc" id="L30">    public Time(int y, int m, int d, int h, int min) {</span>
-<span class="fc bfc" id="L31" title="All 4 branches covered.">        if (m &lt; 1 || m &gt; 12) {</span>
-<span class="fc" id="L32">            throw new IllegalArgumentException(&quot;month must be within 1..12&quot;);</span>
+<span class="fc" id="L31">    public Time(int y, int m, int d, int h, int min) {</span>
+<span class="fc bfc" id="L32" title="All 4 branches covered.">        if (m &lt; 1 || m &gt; 12) {</span>
+<span class="fc" id="L33">            throw new IllegalArgumentException(&quot;month must be within 1..12&quot;);</span>
         }
-<span class="fc bfc" id="L34" title="All 4 branches covered.">        if (d &lt; 1 || d &gt; 31) {</span>
-<span class="fc" id="L35">            throw new IllegalArgumentException(&quot;day must be within 1..31&quot;);</span>
+<span class="fc bfc" id="L35" title="All 4 branches covered.">        if (d &lt; 1 || d &gt; 31) {</span>
+<span class="fc" id="L36">            throw new IllegalArgumentException(&quot;day must be within 1..31&quot;);</span>
         }
-<span class="fc bfc" id="L37" title="All 4 branches covered.">        if (h &lt; 0 || h &gt; 23) {</span>
-<span class="fc" id="L38">            throw new IllegalArgumentException(&quot;hours must be within 0..23&quot;);</span>
+<span class="fc bfc" id="L38" title="All 4 branches covered.">        if (h &lt; 0 || h &gt; 23) {</span>
+<span class="fc" id="L39">            throw new IllegalArgumentException(&quot;hours must be within 0..23&quot;);</span>
         }
-<span class="fc bfc" id="L40" title="All 4 branches covered.">        if (min &lt; 0 || min &gt; 59) {</span>
-<span class="fc" id="L41">            throw new IllegalArgumentException(&quot;minutes must be within 0..59&quot;);</span>
+<span class="fc bfc" id="L41" title="All 4 branches covered.">        if (min &lt; 0 || min &gt; 59) {</span>
+<span class="fc" id="L42">            throw new IllegalArgumentException(&quot;minutes must be within 0..59&quot;);</span>
         }
-        
-<span class="fc" id="L44">        gc = new GregorianCalendar(y, m , d, h, min);</span>
-<span class="fc" id="L45">    }</span>
 
-<span class="fc" id="L47">    Time(Time t) {</span>
-<span class="fc" id="L48">        gc = (GregorianCalendar) t.gc.clone();</span>
-<span class="fc" id="L49">    }</span>
+<span class="fc" id="L45">        gc = new GregorianCalendar(y, m - 1, d, h, min);</span>
+<span class="fc" id="L46">    }</span>
+
+<span class="fc" id="L48">    Time(Time t) {</span>
+<span class="fc" id="L49">        gc = (GregorianCalendar) t.gc.clone();</span>
+<span class="fc" id="L50">    }</span>
 
     @Override
     public DayInWeek getDayInWeek() {
-<span class="fc" id="L53">        int day_of_week = gc.get(GregorianCalendar.DAY_OF_WEEK);</span>
-<span class="pc bpc" id="L54" title="1 of 8 branches missed.">        switch (day_of_week) {</span>
+<span class="fc" id="L54">        int day_of_week = gc.get(GregorianCalendar.DAY_OF_WEEK);</span>
+<span class="pc bpc" id="L55" title="1 of 8 branches missed.">        switch (day_of_week) {</span>
             case GregorianCalendar.SUNDAY:
-<span class="fc" id="L56">                return DayInWeek.SUN;</span>
+<span class="fc" id="L57">                return DayInWeek.SUN;</span>
             case GregorianCalendar.MONDAY:
-<span class="fc" id="L58">                return DayInWeek.MON;</span>
+<span class="fc" id="L59">                return DayInWeek.MON;</span>
             case GregorianCalendar.TUESDAY:
-<span class="fc" id="L60">                return DayInWeek.TUE;</span>
+<span class="fc" id="L61">                return DayInWeek.TUE;</span>
             case GregorianCalendar.WEDNESDAY:
-<span class="fc" id="L62">                return DayInWeek.WED;</span>
+<span class="fc" id="L63">                return DayInWeek.WED;</span>
             case GregorianCalendar.THURSDAY:
-<span class="fc" id="L64">                return DayInWeek.THU;</span>
+<span class="fc" id="L65">                return DayInWeek.THU;</span>
             case GregorianCalendar.FRIDAY:
-<span class="fc" id="L66">                return DayInWeek.FRI;</span>
+<span class="fc" id="L67">                return DayInWeek.FRI;</span>
             case GregorianCalendar.SATURDAY:
-<span class="fc" id="L68">                return DayInWeek.SAT;</span>
+<span class="fc" id="L69">                return DayInWeek.SAT;</span>
             default:
-<span class="nc" id="L70">                return null;</span>
+<span class="nc" id="L71">                return null;</span>
         }
     }
 
     @Override
     public int getYear() {
-<span class="fc" id="L76">        return gc.get(GregorianCalendar.YEAR);</span>
+<span class="fc" id="L77">        return gc.get(GregorianCalendar.YEAR);</span>
     }
 
     @Override
     public int getMonth() {
-<span class="fc" id="L81">        return gc.get(GregorianCalendar.MONTH);</span>
+<span class="fc" id="L82">        return gc.get(GregorianCalendar.MONTH) + 1;</span>
     }
 
     @Override
     public int getDay() {
-<span class="fc" id="L86">        return gc.get(GregorianCalendar.DAY_OF_MONTH);</span>
+<span class="fc" id="L87">        return gc.get(GregorianCalendar.DAY_OF_MONTH);</span>
     }
 
     @Override
     public int getHours() {
-<span class="fc" id="L91">        return gc.get(GregorianCalendar.HOUR_OF_DAY);</span>
+<span class="fc" id="L92">        return gc.get(GregorianCalendar.HOUR_OF_DAY);</span>
     }
 
     @Override
     public int getMinutes() {
-<span class="fc" id="L96">        return gc.get(GregorianCalendar.MINUTE);</span>
+<span class="fc" id="L97">        return gc.get(GregorianCalendar.MINUTE);</span>
     }
 
     @Override
     public ITime plus(int minutes) {
-<span class="fc" id="L101">        Time time = new Time(this);</span>
-<span class="fc" id="L102">        time.gc.add(GregorianCalendar.MINUTE, minutes);</span>
-<span class="fc" id="L103">        return time;</span>
+<span class="fc" id="L102">        Time time = new Time(this);</span>
+<span class="fc" id="L103">        time.gc.add(GregorianCalendar.MINUTE, minutes);</span>
+<span class="fc" id="L104">        return time;</span>
     }
 
     @Override
     public int compareTo(ITime t) {
-<span class="fc" id="L108">        Time time = (Time) t;</span>
-<span class="fc" id="L109">        return time.gc.compareTo(gc);</span>
+<span class="fc" id="L109">        Time time = (Time) t;</span>
+<span class="fc" id="L110">        return time.gc.compareTo(gc);</span>
     }
 
     @Override
     public int difference(ITime time) {
-<span class="fc" id="L114">        Time t = (Time) time;</span>
-<span class="fc" id="L115">        return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);</span>
+<span class="fc" id="L115">        Time t = (Time) time;</span>
+<span class="fc" id="L116">        return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);</span>
     }
-    
-        @Override
-    public boolean equals(Object obj){
-<span class="fc" id="L120">        Time t = (Time)obj;</span>
-<span class="pc bpc" id="L121" title="2 of 8 branches missed.">        if(t.getDay() == this.getDay() &amp;&amp; t.getYear() == this.getYear() &amp;&amp; t.getHours() == this.getHours() &amp;&amp; t.getMinutes() == this.getMinutes()){</span>
-<span class="fc" id="L122">            return true;</span>
-        }
-<span class="fc" id="L124">        return false;</span>
-    }
-    
+
     @Override
-    public String toString(){
-<span class="fc" id="L129">        return this.getYear()+&quot;-&quot;+ this.getMonth()+&quot;-&quot;+this.getDay()+&quot;-&quot;+this.getHours()+&quot;-&quot;+this.getMinutes();</span>
+    public boolean equals(Object obj) {
+<span class="fc" id="L121">        Time t = (Time) obj;</span>
+<span class="pc bpc" id="L122" title="2 of 8 branches missed.">        if (t.getDay() == this.getDay() &amp;&amp; t.getYear() == this.getYear() &amp;&amp; t.getHours() == this.getHours() &amp;&amp; t.getMinutes() == this.getMinutes()) {</span>
+<span class="fc" id="L123">            return true;</span>
+        }
+<span class="fc" id="L125">        return false;</span>
+    }
+    
+     @Override
+    public String toString()
+    {
+<span class="fc" id="L131">    return (&quot;Date: &quot;+this.getYear()+&quot;/&quot;+this.getMonth()+&quot;/&quot;+this.getDay()+&quot; Day: &quot;+this.getDayInWeek()+&quot; Time: &quot;+this.getHours()+&quot;:&quot;+this.getMinutes());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

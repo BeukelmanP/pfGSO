@@ -27,7 +27,7 @@ public class Contact {
     
     public Contact(String _naam) {
         
-        if(_naam != null || _naam != ""){
+        if(_naam != null && _naam != ""){
             this.naam = _naam;
             appointments = new ArrayList<Appointment>();
         }
@@ -63,18 +63,16 @@ public class Contact {
      */
     
     boolean addAppointment(Appointment apt){
-        boolean found = false;
         if(apt != null){
            
             for(Appointment apt2 : appointments){
                 if(apt2.equals(apt)){
-                    found = true;
+                    return false;
                 }
             }
             
-            if(!found){
                 appointments.add(apt);
-            }
+                return true;
             
         }
         return false;
@@ -93,5 +91,13 @@ public class Contact {
         if(apt != null){
             appointments.remove(apt);
         }
+    }
+    
+    public int size(Iterator it){
+        int i =0;
+        for ( ; it.hasNext() ; ++i ) {
+        it.next();
+        }
+        return i;
     }
 }

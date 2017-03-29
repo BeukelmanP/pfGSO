@@ -56,40 +56,41 @@ public class ContactTest {
         assertEquals("Henk", name);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test()
     public void testaddAppointmentfalse() {
-        c.addAppointment(null);
+        assertEquals(false,c.addAppointment(null));
     }
 
     @Test
     public void testaddAppointment() {
         c.addAppointment(new Appointment("Afspraak", new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40))));
-        assertEquals(c.getAppointments().size(), 1);
-
+        assertEquals(1,c.size(c.getAppointments()));
+ 
         c.addAppointment(new Appointment("Afspraak", new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40))));
-        assertEquals(c.getAppointments().size(), 1);
+        assertEquals(1, c.size(c.getAppointments()));
 
         c.addAppointment(new Appointment("testAfspraak", new TimeSpan(new Time(2017, 2, 1, 13, 30), new Time(2017, 2, 1, 13, 40))));
-        assertEquals(c.getAppointments().size(), 2);
+        assertEquals(2, c.size(c.getAppointments()));
 
         c.addAppointment(new Appointment("testAfspraak", new TimeSpan(new Time(2017, 2, 1, 13, 38), new Time(2017, 2, 1, 13, 49))));
-        assertEquals(c.getAppointments().size(), 3);
+        assertEquals(3, c.size(c.getAppointments()));
 
     }
-
+    
+    @Test
     public void testremoveAppointment() {
 
         c.addAppointment(new Appointment("Afspraak", new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40))));
-        assertEquals(c.getAppointments().size(), 1);
+        assertEquals(c.size(c.getAppointments()), 1);
 
         c.addAppointment(new Appointment("testAfspraak", new TimeSpan(new Time(2017, 2, 1, 13, 30), new Time(2017, 2, 1, 13, 40))));
-        assertEquals(c.getAppointments().size(), 2);
+        assertEquals(c.size(c.getAppointments()), 2);
 
         c.removeAppointment(new Appointment("Afspraak", new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40))));
-        assertEquals(c.getAppointments().size(), 1);
+        assertEquals(c.size(c.getAppointments()), 1);
 
         c.removeAppointment(new Appointment("Afspraak", new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40))));
-        assertEquals(c.getAppointments().size(), 1);
+        assertEquals(c.size(c.getAppointments()), 1);
     }
 
     public void testappointments() {

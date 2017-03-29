@@ -6,6 +6,7 @@
 package fontys.time;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,7 +22,7 @@ public class Appointment {
      */
     private String subject;
     private ITimeSpan timeSpan;
-    private ArrayList<Contact> invitees;
+    private List<Contact> invitees;
 
     /**
      * Constructor
@@ -60,7 +61,7 @@ public class Appointment {
      *
      * invitees returns a iterator of all contacts for this appointment.
      */
-    public ArrayList<Contact> getInvitees() {
+    public List<Contact> getInvitees() {
         return invitees;
     }
 
@@ -114,7 +115,7 @@ public class Appointment {
     public boolean equals(Object obj) {
         Appointment apt1 = (Appointment) obj;
 
-        if (apt1.timeSpan == this.timeSpan) {
+        if (apt1.timeSpan.equals(this.timeSpan) && apt1.getSubject() == getSubject()) {
             return true;
         }
 

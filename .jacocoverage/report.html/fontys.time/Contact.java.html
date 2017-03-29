@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Contact.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;UnittestenTime&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">fontys.time</a> &gt; <span class="el_source">Contact.java</span></div><h1>Contact.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package fontys.time;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+/**
+ *
+ * @author piete
+ */
+public class Contact {
+    
+    public String naam;
+    public List&lt;Appointment&gt; appointments;
+    
+    /**
+    * Constructor
+    *  
+    * Constructor1 :
+    * @Param name of type String, name cannot be null and may not be empty
+    */
+    
+<span class="fc" id="L28">    public Contact(String _naam) {</span>
+        
+<span class="fc bfc" id="L30" title="All 4 branches covered.">        if(_naam != null &amp;&amp; _naam != &quot;&quot;){</span>
+<span class="fc" id="L31">            this.naam = _naam;</span>
+<span class="fc" id="L32">            appointments = new ArrayList&lt;Appointment&gt;();</span>
+        }
+        else{
+<span class="fc" id="L35">            throw new IllegalArgumentException();</span>
+        }
+        
+<span class="fc" id="L38">    }   </span>
+
+    /**
+    * Get/Set
+    * 
+    * getName returns the name of type String
+    * appointments returns agenda of the contact
+    */
+    
+    public String getNaam() {
+<span class="fc" id="L48">        return naam;</span>
+    }
+
+    public Iterator&lt;Appointment&gt; getAppointments() {
+<span class="fc" id="L52">        return appointments.iterator();</span>
+    }
+    
+    /**
+     * Method
+     * 
+     * addAppointment
+     * @Param a of type Appointment, a cannot be null and appointment may not already be in the Agenda(name and timespan), you can have two overlapping appointments.
+     * 
+     * adds a new appointment to the agenda
+     * return false if no appointment was added else return true
+     */
+    
+    boolean addAppointment(Appointment apt){
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if(apt != null){</span>
+           
+<span class="fc bfc" id="L68" title="All 2 branches covered.">            for(Appointment apt2 : appointments){</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">                if(apt2.equals(apt)){</span>
+<span class="fc" id="L70">                    return false;</span>
+                }
+<span class="fc" id="L72">            }</span>
+            
+<span class="fc" id="L74">                appointments.add(apt);</span>
+<span class="fc" id="L75">                return true;</span>
+            
+        }
+<span class="fc" id="L78">        return false;</span>
+    }
+    
+     /**
+     * Method
+     * 
+     * removeAppointment
+     * Param a of type Appointment, a cannot be null. 
+     * 
+     * removes the instance of appointment from agenda
+     */
+    
+    void removeAppointment(Appointment apt){
+<span class="pc bpc" id="L91" title="1 of 2 branches missed.">        if(apt != null){</span>
+<span class="fc" id="L92">            appointments.remove(apt);</span>
+        }
+<span class="fc" id="L94">    }</span>
+    
+    public int size(Iterator it){
+<span class="fc" id="L97">        int i =0;</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        for ( ; it.hasNext() ; ++i ) {</span>
+<span class="fc" id="L99">        it.next();</span>
+        }
+<span class="fc" id="L101">        return i;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

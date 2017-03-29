@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Appointment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;UnittestenTime&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">fontys.time</a> &gt; <span class="el_source">Appointment.java</span></div><h1>Appointment.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package fontys.time;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Administrator
+ */
+public class Appointment {
+
+    /**
+     * Properties
+     *
+     * 1 subject van het type String, mag een empty String zijn. 1 TimeSpan van
+     * het type ITimeSpan. 0..* invitees van het type Contact
+     */
+    private String subject;
+    private ITimeSpan timeSpan;
+    private ArrayList&lt;Contact&gt; invitees;
+
+    /**
+     * Constructor
+     *
+     * Constructor1 : parm Subject van het type String, mag een empty String
+     * zijn. parm timeSpan van het type ITimeSpan, timeSpan mag niet in het
+     * verleden liggen.
+     */
+<span class="fc" id="L33">    public Appointment(String subject, ITimeSpan timeSpan) {</span>
+<span class="fc" id="L34">        boolean past = false;</span>
+<span class="pc bpc" id="L35" title="2 of 4 branches missed.">        if (subject == &quot;&quot; || past) {</span>
+<span class="nc" id="L36">            throw new IllegalArgumentException();</span>
+        } else {
+<span class="fc" id="L38">            this.subject = subject;</span>
+<span class="fc" id="L39">            this.timeSpan = timeSpan;</span>
+<span class="fc" id="L40">            invitees = new ArrayList&lt;&gt;();</span>
+        }
+<span class="fc" id="L42">    }</span>
+
+    /**
+     * Get/Set
+     *
+     * getSubject returns the subject of type String getTimeSpan returns the
+     * timespan of the appointment of type ITimeSpan
+     */
+    public String getSubject() {
+<span class="nc" id="L51">        return subject;</span>
+    }
+
+    public ITimeSpan getTimeSpan() {
+<span class="nc" id="L55">        return timeSpan;</span>
+    }
+
+    /**
+     * Method
+     *
+     * invitees returns a iterator of all contacts for this appointment.
+     */
+    public ArrayList&lt;Contact&gt; getInvitees() {
+<span class="fc" id="L64">        return invitees;</span>
+    }
+
+    /**
+     * Method
+     *
+     * addContact parm contact of type contact
+     *
+     * adds the contact if the contact isnt already added to this appointment.
+     * if the contact is already in the invitees list return false otherwise
+     * return true
+     */
+    public boolean addContact(Contact contact) {
+<span class="fc" id="L77">        boolean found = false;</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        for (Contact contact2 : invitees) {</span>
+<span class="pc bpc" id="L79" title="1 of 4 branches missed.">            if (contact2.appointments.equals(contact.appointments) &amp;&amp; contact2.getNaam().equals(contact.getNaam())) {</span>
+<span class="fc" id="L80">                found = true;</span>
+            }
+<span class="fc" id="L82">        }</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (found) {</span>
+<span class="fc" id="L84">            return false;</span>
+        } else {
+<span class="fc" id="L86">            invitees.add(contact);</span>
+<span class="fc" id="L87">            return true;</span>
+        }
+    }
+
+    /**
+     * Method
+     *
+     * removeContact parm contact of type contact
+     *
+     * if the contact is in the list of invitees for this appointment remove it
+     * if the contact cannot be found in the list of invitees do nothing.
+     */
+    public void removeContact(Contact contact) {
+<span class="fc" id="L100">        int removethis = -1;</span>
+<span class="fc" id="L101">        int i = 0;</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        for (Contact contact2 : invitees) {</span>
+<span class="pc bpc" id="L103" title="2 of 4 branches missed.">            if (contact2.appointments.equals(contact.appointments) &amp;&amp; contact2.getNaam().equals(contact.getNaam())) {</span>
+<span class="fc" id="L104">                removethis = i;</span>
+            }
+<span class="fc" id="L106">            i++;</span>
+<span class="fc" id="L107">        }</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">        if (removethis &gt;= 0) {</span>
+<span class="fc" id="L109">            invitees.remove(removethis);</span>
+        }
+<span class="fc" id="L111">    }</span>
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="fc" id="L115">        Appointment apt1 = (Appointment) obj;</span>
+
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">        if (apt1.timeSpan == this.timeSpan) {</span>
+<span class="nc" id="L118">            return true;</span>
+        }
+
+<span class="fc" id="L121">        return false;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -118,43 +118,43 @@ public class TimeTest {
         //@return the concerning day in the week of this time
         System.out.println("Test method: getDayInWeek");
 
-        Time dayTest = new Time(2017, 3, 17, 20, 31);
+        Time dayTest = new Time(2017, 3, 13, 20, 31);
         DayInWeek expResult = DayInWeek.MON;
         DayInWeek result = dayTest.getDayInWeek();
         System.out.println("Expected: " + expResult.toString() + " Actual: " + result.toString() + " \n ");
         assertEquals(expResult, result);
         
-        dayTest = new Time(2017, 3, 18, 20, 31);
+        dayTest = new Time(2017, 3, 14, 20, 31);
         expResult = DayInWeek.TUE;
         result = dayTest.getDayInWeek();
         System.out.println("Expected: " + expResult.toString() + " Actual: " + result.toString() + " \n ");
         assertEquals(expResult, result);
         
-        dayTest = new Time(2017, 3, 19, 20, 31);
+        dayTest = new Time(2017, 3, 15, 20, 31);
         expResult = DayInWeek.WED;
         result = dayTest.getDayInWeek();
         System.out.println("Expected: " + expResult.toString() + " Actual: " + result.toString() + " \n ");
         assertEquals(expResult, result);
 
-        dayTest = new Time(2017, 3, 20, 20, 31);
+        dayTest = new Time(2017, 3, 16, 20, 31);
         expResult = DayInWeek.THU;
         result = dayTest.getDayInWeek();
         System.out.println("Expected: " + expResult.toString() + " Actual: " + result.toString() + " \n ");
         assertEquals(expResult, result);
         
-        dayTest = new Time(2017, 3, 21, 20, 31);
+        dayTest = new Time(2017, 3, 17, 20, 31);
         expResult = DayInWeek.FRI;
         result = dayTest.getDayInWeek();
         System.out.println("Expected: " + expResult.toString() + " Actual: " + result.toString() + " \n ");
         assertEquals(expResult, result);
         
-        dayTest = new Time(2017, 3, 22, 20, 31);
+        dayTest = new Time(2017, 3, 18, 20, 31);
         expResult = DayInWeek.SAT;
         result = dayTest.getDayInWeek();
         System.out.println("Expected: " + expResult.toString() + " Actual: " + result.toString() + " \n ");
         assertEquals(expResult, result);
         
-        dayTest = new Time(2017, 3, 23, 20, 31);
+        dayTest = new Time(2017, 3, 19, 20, 31);
         expResult = DayInWeek.SUN;
         result = dayTest.getDayInWeek();
         System.out.println("Expected: " + expResult.toString() + " Actual: " + result.toString() + " \n ");
@@ -183,7 +183,7 @@ public class TimeTest {
     public void testGetMonth() {
         //@return the number of the month of this time (1..12)
         System.out.println("Test method: getMonth");
-        int expResult = 3;
+        int expResult =3 ;
         int result = t.getMonth();
         System.out.println("Expected: " + expResult + " Actual: " + result + " \n ");
         assertEquals(expResult, result);

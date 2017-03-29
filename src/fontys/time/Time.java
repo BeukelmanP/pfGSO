@@ -9,9 +9,9 @@ import java.util.GregorianCalendar;
 /**
  *
  * @author Frank Peeters, Nico Kuijpers
- * 
+ *
  * LET OP: De klasse Time bevat enkele fouten.
- * 
+ *
  */
 public class Time implements ITime {
 
@@ -19,13 +19,14 @@ public class Time implements ITime {
 
     /**
      * creation of a time-object with year y, month m, day d, hours h and
-     * minutes m; if the combination of y-m-d refers to a non-existing date 
-     * the value of this Time-object will be not guaranteed 
-     * @param y 
-     * @param m 1≤m≤12
-     * @param d 1≤d≤31
-     * @param h 0≤h≤23
-     * @param min 0≤m≤59
+     * minutes m; if the combination of y-m-d refers to a non-existing date the
+     * value of this Time-object will be not guaranteed
+     *
+     * @param y
+     * @param m 1â‰¤mâ‰¤12
+     * @param d 1â‰¤dâ‰¤31
+     * @param h 0â‰¤hâ‰¤23
+     * @param min 0â‰¤mâ‰¤59
      */
     public Time(int y, int m, int d, int h, int min) {
         if (m < 1 || m > 12) {
@@ -40,8 +41,8 @@ public class Time implements ITime {
         if (min < 0 || min > 59) {
             throw new IllegalArgumentException("minutes must be within 0..59");
         }
-        
-        gc = new GregorianCalendar(y, m , d, h, min);
+
+        gc = new GregorianCalendar(y, m - 1, d, h, min);
     }
 
     Time(Time t) {
@@ -78,7 +79,7 @@ public class Time implements ITime {
 
     @Override
     public int getMonth() {
-        return gc.get(GregorianCalendar.MONTH);
+        return gc.get(GregorianCalendar.MONTH) + 1;
     }
 
     @Override
@@ -113,19 +114,5 @@ public class Time implements ITime {
     public int difference(ITime time) {
         Time t = (Time) time;
         return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);
-    }
-    
-        @Override
-    public boolean equals(Object obj){
-        Time t = (Time)obj;
-        if(t.getDay() == this.getDay() && t.getYear() == this.getYear() && t.getHours() == this.getHours() && t.getMinutes() == this.getMinutes()){
-            return true;
-        }
-        return false;
-    }
-    
-    @Override
-    public String toString(){
-        return this.getYear()+"-"+ this.getMonth()+"-"+this.getDay()+"-"+this.getHours()+"-"+this.getMinutes();
     }
 }

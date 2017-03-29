@@ -107,7 +107,7 @@ public class Time implements ITime {
     @Override
     public int compareTo(ITime t) {
         Time time = (Time) t;
-        return time.gc.compareTo(gc);
+        return gc.compareTo(time.gc);
     }
 
     @Override

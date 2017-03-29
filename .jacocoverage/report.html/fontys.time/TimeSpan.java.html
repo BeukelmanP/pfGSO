@@ -53,13 +53,13 @@ public class TimeSpan implements ITimeSpan {
 
     @Override
     public void setBeginTime(ITime beginTime) {
-<span class="nc bnc" id="L56" title="All 2 branches missed.">    if (beginTime.compareTo(et) &lt;= 0) {</span>
-<span class="nc" id="L57">            throw new IllegalArgumentException(&quot;begin time &quot;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">    if (beginTime.compareTo(et) &lt;= 0) {</span>
+<span class="fc" id="L57">            throw new IllegalArgumentException(&quot;begin time &quot;</span>
                     + bt + &quot; must be earlier than end time &quot; + et);
         }
 
-<span class="nc" id="L61">        bt = beginTime;</span>
-<span class="nc" id="L62">    }</span>
+<span class="fc" id="L61">        bt = beginTime;</span>
+<span class="fc" id="L62">    }</span>
 
     @Override
     public void setEndTime(ITime endTime) {

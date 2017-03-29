@@ -18,26 +18,26 @@ import static org.junit.Assert.*;
  * @author frederick
  */
 public class AppointmentTest {
-    
+
     Appointment apt1;
-    
+
     public AppointmentTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
-        
+
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-        apt1 = new Appointment("Doctors afspraak", new TimeSpan(new Time(2017,2,1,12,30), new Time(2017,2,1,12,40)));
+        apt1 = new Appointment("Doctors afspraak", new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40)));
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -46,27 +46,39 @@ public class AppointmentTest {
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
-    // public void hello() {}
-    
-    @Test
-    public void addContactTest(){
-        assertEquals(true,apt1.addContact(new Contact("Doctor")));
-        
-        apt1.addContact(new Contact("Ham Speklap"));
-        assertEquals(apt1.getInvitees().size(),2);
-        
-        assertEquals(false,apt1.addContact(new Contact("Ham Speklap")));
+    // public void hello() 
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructorFalse1() {
+        apt1 = new Appointment("", new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40)));
     }
     
+
     @Test
-    public void removeContact(){
+    public void addContactTest() {
+        assertEquals(true, apt1.addContact(new Contact("Doctor")));
+
+        apt1.addContact(new Contact("Ham Speklap"));
+        assertEquals(apt1.getInvitees().size(), 2);
+
+        assertEquals(false, apt1.addContact(new Contact("Ham Speklap")));
+    }
+
+    @Test
+    public void getTimespan() {
+        TimeSpan expected = new TimeSpan(new Time(2017, 2, 1, 12, 30), new Time(2017, 2, 1, 12, 40));
+        TimeSpan actual = (TimeSpan) apt1.getTimeSpan();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void removeContact() {
         apt1.addContact(new Contact("Doctor"));
-        assertEquals(apt1.getInvitees().size(),1);
-        
+        assertEquals(apt1.getInvitees().size(), 1);
+
         apt1.removeContact(new Contact("Doctor"));
-        assertEquals(apt1.getInvitees().size(),0);
-        
+        assertEquals(apt1.getInvitees().size(), 0);
+
         apt1.removeContact(new Contact("Doctor"));
-        assertEquals(apt1.getInvitees().size(),0);
+        assertEquals(apt1.getInvitees().size(), 0);
     }
 }

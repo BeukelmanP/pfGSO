@@ -67,7 +67,7 @@ public class TimeSpanTest {
     /**
      * Test of setBeginTime method, of class TimeSpan.
      */
-    //@Test(expected=IllegalArgumentException.class)
+    @Test(expected=IllegalArgumentException.class)
     public void testSetBeginTime() {
         System.out.println("Test setBeginTime");
         

@@ -5,6 +5,7 @@
  */
 package fontys.time;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,16 +32,26 @@ public class Appointment {
      * zijn. parm timeSpan van het type ITimeSpan, timeSpan mag niet in het
      * verleden liggen.
      */
-<span class="fc" id="L34">    public Appointment(String subject, ITimeSpan timeSpan) {</span>
-<span class="fc" id="L35">        boolean past = false;</span>
-<span class="pc bpc" id="L36" title="2 of 4 branches missed.">        if (subject == &quot;&quot; || past) {</span>
-<span class="nc" id="L37">            throw new IllegalArgumentException();</span>
-        } else {
-<span class="fc" id="L39">            this.subject = subject;</span>
-<span class="fc" id="L40">            this.timeSpan = timeSpan;</span>
-<span class="fc" id="L41">            invitees = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L35">    public Appointment(String subject, ITimeSpan timeSpan) {</span>
+<span class="fc" id="L36">        boolean past = false;</span>
+<span class="fc" id="L37">        int year = LocalDateTime.now().getYear();</span>
+<span class="fc" id="L38">        int month = LocalDateTime.now().getMonthValue();</span>
+<span class="fc" id="L39">        int dayofm =LocalDateTime.now().getDayOfMonth();</span>
+<span class="fc" id="L40">        int hour = LocalDateTime.now().getHour();</span>
+<span class="fc" id="L41">        int minute = LocalDateTime.now().getMinute();</span>
+<span class="fc" id="L42">        int a = timeSpan.getBeginTime().compareTo(new Time(year,month,dayofm,hour,minute));</span>
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">        if(a==-1)</span>
+        {
+<span class="nc" id="L45">            past = true;</span>
         }
-<span class="fc" id="L43">    }</span>
+<span class="pc bpc" id="L47" title="1 of 4 branches missed.">        if (subject == &quot;&quot; || past) {</span>
+<span class="fc" id="L48">            throw new IllegalArgumentException();</span>
+        } else {
+<span class="fc" id="L50">            this.subject = subject;</span>
+<span class="fc" id="L51">            this.timeSpan = timeSpan;</span>
+<span class="fc" id="L52">            invitees = new ArrayList&lt;&gt;();</span>
+        }
+<span class="fc" id="L54">    }</span>
 
     /**
      * Get/Set
@@ -49,11 +60,11 @@ public class Appointment {
      * timespan of the appointment of type ITimeSpan
      */
     public String getSubject() {
-<span class="fc" id="L52">        return subject;</span>
+<span class="fc" id="L63">        return subject;</span>
     }
 
     public ITimeSpan getTimeSpan() {
-<span class="nc" id="L56">        return timeSpan;</span>
+<span class="fc" id="L67">        return timeSpan;</span>
     }
 
     /**
@@ -62,7 +73,7 @@ public class Appointment {
      * invitees returns a iterator of all contacts for this appointment.
      */
     public List&lt;Contact&gt; getInvitees() {
-<span class="fc" id="L65">        return invitees;</span>
+<span class="fc" id="L76">        return invitees;</span>
     }
 
     /**
@@ -75,17 +86,17 @@ public class Appointment {
      * return true
      */
     public boolean addContact(Contact contact) {
-<span class="fc" id="L78">        boolean found = false;</span>
-<span class="fc bfc" id="L79" title="All 2 branches covered.">        for (Contact contact2 : invitees) {</span>
-<span class="pc bpc" id="L80" title="1 of 4 branches missed.">            if (contact2.appointments.equals(contact.appointments) &amp;&amp; contact2.getNaam().equals(contact.getNaam())) {</span>
-<span class="fc" id="L81">                found = true;</span>
+<span class="fc" id="L89">        boolean found = false;</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        for (Contact contact2 : invitees) {</span>
+<span class="pc bpc" id="L91" title="1 of 4 branches missed.">            if (contact2.appointments.equals(contact.appointments) &amp;&amp; contact2.getNaam().equals(contact.getNaam())) {</span>
+<span class="fc" id="L92">                found = true;</span>
             }
-<span class="fc" id="L83">        }</span>
-<span class="fc bfc" id="L84" title="All 2 branches covered.">        if (found) {</span>
-<span class="fc" id="L85">            return false;</span>
+<span class="fc" id="L94">        }</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        if (found) {</span>
+<span class="fc" id="L96">            return false;</span>
         } else {
-<span class="fc" id="L87">            invitees.add(contact);</span>
-<span class="fc" id="L88">            return true;</span>
+<span class="fc" id="L98">            invitees.add(contact);</span>
+<span class="fc" id="L99">            return true;</span>
         }
     }
 
@@ -98,28 +109,28 @@ public class Appointment {
      * if the contact cannot be found in the list of invitees do nothing.
      */
     public void removeContact(Contact contact) {
-<span class="fc" id="L101">        int removethis = -1;</span>
-<span class="fc" id="L102">        int i = 0;</span>
-<span class="fc bfc" id="L103" title="All 2 branches covered.">        for (Contact contact2 : invitees) {</span>
-<span class="pc bpc" id="L104" title="2 of 4 branches missed.">            if (contact2.appointments.equals(contact.appointments) &amp;&amp; contact2.getNaam().equals(contact.getNaam())) {</span>
-<span class="fc" id="L105">                removethis = i;</span>
+<span class="fc" id="L112">        int removethis = -1;</span>
+<span class="fc" id="L113">        int i = 0;</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        for (Contact contact2 : invitees) {</span>
+<span class="pc bpc" id="L115" title="2 of 4 branches missed.">            if (contact2.appointments.equals(contact.appointments) &amp;&amp; contact2.getNaam().equals(contact.getNaam())) {</span>
+<span class="fc" id="L116">                removethis = i;</span>
             }
-<span class="fc" id="L107">            i++;</span>
-<span class="fc" id="L108">        }</span>
-<span class="fc bfc" id="L109" title="All 2 branches covered.">        if (removethis &gt;= 0) {</span>
-<span class="fc" id="L110">            invitees.remove(removethis);</span>
+<span class="fc" id="L118">            i++;</span>
+<span class="fc" id="L119">        }</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">        if (removethis &gt;= 0) {</span>
+<span class="fc" id="L121">            invitees.remove(removethis);</span>
         }
-<span class="fc" id="L112">    }</span>
+<span class="fc" id="L123">    }</span>
 
     @Override
     public boolean equals(Object obj) {
-<span class="fc" id="L116">        Appointment apt1 = (Appointment) obj;</span>
+<span class="fc" id="L127">        Appointment apt1 = (Appointment) obj;</span>
 
-<span class="pc bpc" id="L118" title="1 of 4 branches missed.">        if (apt1.timeSpan.equals(this.timeSpan) &amp;&amp; apt1.getSubject() == getSubject()) {</span>
-<span class="fc" id="L119">            return true;</span>
+<span class="pc bpc" id="L129" title="1 of 4 branches missed.">        if (apt1.timeSpan.equals(this.timeSpan) &amp;&amp; apt1.getSubject() == getSubject()) {</span>
+<span class="fc" id="L130">            return true;</span>
         }
 
-<span class="fc" id="L122">        return false;</span>
+<span class="fc" id="L133">        return false;</span>
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package fontys.time;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,16 @@ public class Appointment {
      */
     public Appointment(String subject, ITimeSpan timeSpan) {
         boolean past = false;
+        int year = LocalDateTime.now().getYear();
+        int month = LocalDateTime.now().getMonthValue();
+        int dayofm =LocalDateTime.now().getDayOfMonth();
+        int hour = LocalDateTime.now().getHour();
+        int minute = LocalDateTime.now().getMinute();
+        int a = timeSpan.getBeginTime().compareTo(new Time(year,month,dayofm,hour,minute));
+        if(a==-1)
+        {
+            past = true;
+        }
         if (subject == "" || past) {
             throw new IllegalArgumentException();
         } else {

@@ -6,6 +6,7 @@
 package fontys.time;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -47,21 +48,21 @@ public class Contact {
         return naam;
     }
 
-    public List<Appointment> getAppointments() {
-        return appointments;
+    public Iterator<Appointment> getAppointments() {
+        return appointments.iterator();
     }
     
     /**
      * Method
      * 
      * addAppointment
-     * Param a of type Appointment, a cannot be null and appointment may not already be in the Agenda(name and timespan), you can have two overlapping appointments.
+     * @Param a of type Appointment, a cannot be null and appointment may not already be in the Agenda(name and timespan), you can have two overlapping appointments.
      * 
      * adds a new appointment to the agenda
      * return false if no appointment was added else return true
      */
     
-    public boolean addAppointment(Appointment apt){
+    boolean addAppointment(Appointment apt){
         boolean found = false;
         if(apt != null){
            
@@ -88,7 +89,7 @@ public class Contact {
      * removes the instance of appointment from agenda
      */
     
-    public void removeAppointment(Appointment apt){
+    void removeAppointment(Appointment apt){
         if(apt != null){
             appointments.remove(apt);
         }
